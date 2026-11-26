@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kopi Senja - Kedai Kopi Lokal</title>
+    <style>
+        /* ============================================================
+           KOPI SENJA - FULL LANDING PAGE (Persis kaya website Rafa)
+           Warna: Hijau Neon #00ff88 & Hitam #1a1a2e
+           ============================================================ */
+
+        /* --- CSS Custom Properties (Variables) --- */
+        :root {
+            /* Warna utama - hijau neon */
+            --primary-green: #00ff88;
+            --primary-green-hover: #00cc6a;
+            --primary-green-dark: #00b35c;
+
+            /* Warna pendukung */
+            --bg-dark: #1a1a2e;
+            --bg-gradient-start: #0f0f23;
+            --bg-card: #25253b;
+            --text-main: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #666666;
+            --accent-orange: #ff6b35;
+            --border-color: #3d3d55;
+
+            /* Spacing */
+            --section-padding: 80px 20px;
+            --nav-height: 80px;
+
+            /* Shadow */
+            --box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            --box-shadow-soft: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* --- Reduced Motion (Aksesibilitas) --- */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+
+        /* --- Base Reset --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-dark);
+            line-height: 1.6;
+        }
+
+        /* --- Navbar --- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--nav-height);
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--primary-green);
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-green);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-hover) 100%);
+            color: var(--bg-dark);
+            border: none;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 255, 136, 0.4);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--section-padding) 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Background gradient */
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-dark) 100%);
+        }
+
+        /* Ornament circle */
+        .hero-circle {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.15) 0%, transparent 50%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* --- Hero Content --- */
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--accent-orange) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- Promo Sections --- */
+        .promo-section {
+            padding: var(--section-padding);
+            background: var(--bg-card);
+            margin: 40px 0;
+        }
+
+        .promo-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .promo-card {
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 35px 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .promo-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--box-shadow);
+        }
+
+        .promo-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--primary-green);
+        }
+
+        .promo-card p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .promo-card .price {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-top: 15px;
+        }
+
+        /* --- Menu Section --- */
+        .menu-section {
+            padding: var(--section-padding);
+        }
+
+        .menu-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-card {
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px 25px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .menu-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--primary-green);
+        }
+
+        .menu-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+        }
+
+        .menu-card .price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent-orange);
+            margin-top: 10px;
+        }
+
+        /* --- Gallery Section --- */
+        .gallery-section {
+            padding: var(--section-padding);
+            background: var(--bg-card);
+        }
+
+        .gallery-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            background: var(--bg-gradient-start);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* --- Testimonial Section --- */
+        .testimonial-section {
+            padding: var(--section-padding);
+        }
+
+        .testimonial-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 35px 30px;
+            margin-bottom: 25px;
+        }
+
+        .testimonial-card h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: var(--primary-green);
+        }
+
+        .testimonial-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .testimonial-card .name {
+            font-weight: 600;
+            color: var(--text-main);
+            font-size: 14px;
+        }
+
+        /* --- Footer Section --- */
+        .footer-section {
+            padding: 60px 20px 20px;
+            background: var(--bg-dark);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .footer-brand .logo {
+            color: var(--primary-green);
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .footer-links h4 {
+            font-size: 14px;
+            color: var(--primary-green);
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-green);
+        }
+
+        .footer-contact .phone {
+            color: var(--primary-green);
+            font-size: 20px;
+            font-weight: 600;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .footer-bottom {
+            padding: 25px 20px;
+            background: var(--bg-gradient-start);
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* --- Mobile Menu (Hamburger) --- */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background-color: var(--text-main);
+            transition: 0.3s;
+        }
+
+        @media (max-width: 968px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: var(--nav-height);
+                left: 0;
+                right: 0;
+                background: var(--bg-dark);
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                padding: 30px 0;
+                display: none;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                color: var(--text-main);
+                font-size: 18px;
+            }
+
+            .nav-links a:hover {
+                color: var(--primary-green);
+            }
+
+            .cta-button {
+                display: none;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-brand .logo {
+                justify-self: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- =========================
+         NAVBAR
+         ========================= -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Kopi Senja</a>
+
+            <ul class="nav-links">
+                <li><a href="#beranda">Beranda</a></li>
+                <li><a href="#promo">Promo</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#galeri">Galeri</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+            </ul>
+
+            <button class="cta-button" aria-label="Pesan via WhatsApp">
+                Pesan Sekarang
+            </button>
+
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- =========================
+       HERO SECTION
+       ========================= -->
+    <section class="hero" id="beranda">
+        <div class="hero-bg"></div>
+        <div class="hero-circle"></div>
+        <div class="hero-content">
+            <h1>Kopi Senja</h1>
+            <p>Biji kopi pilihan nusantara yang disangrai segar setiap minggu untuk menemani aktivitas kerjamu.</p>
+            <button class="cta-button" aria-label="Pesan via WhatsApp">
+                Pesan via WhatsApp
+            </button>
+        </div>
+    </section>
+
+    <!-- =========================
+       PROMO SECTION
+       ========================= -->
+    <section class="promo-section" id="promo">
+        <div class="promo-grid">
+            <!-- Happy Hour -->
+            <div class="promo-card">
+                <h3>Happy Hour</h3>
+                <p>Diskon 15% untuk pembelian 2 gelas Kopi Susu Gula Aren sebelum jam 11.00 WIB.</p>
+                <div class="price">Diskon 15%</div>
+            </div>
+
+            <!-- Package Pagi -->
+            <div class="promo-card">
+                <h3>Paket Pagi</h3>
+                <p>Croissant Mentega + Americano Hangat, pas untuk sarapan.</p>
+                <div class="price">Rp38.000</div>
+            </div>
+
+            <!-- Member Senja -->
+            <div class="promo-card">
+                <h3>Member Senja</h3>
+                <p>Beli 5, Gratis 1. Kumpulkan stempel digital dan tukarkan dengan minuman favoritmu.</p>
+                <div class="price">Mulai Daftar</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================
+       MENU SECTION
+       ========================= -->
+    <section class="menu-section" id="menu">
+        <div class="menu-grid">
+            <!-- Kopi Susu Gula Aren -->
+            <div class="menu-card">
+                <h3>Kopi Susu Gula Aren</h3>
+                <p>Perpaduan espresso seimbang, susu segar dingin, dan manisnya gula aren asli.</p>
+                <div class="price">Rp22.000</div>
+            </div>
+
+            <!-- Americano Hangat -->
+            <div class="menu-card">
+                <h3>Americano Hangat</h3>
+                <p>Karakter rasa cokelat dan karamel lembut tanpa gula, cocok untuk fokus seharian.</p>
+                <div class="price">Rp18.000</div>
+            </div>
+
+            <!-- Kopi Tubruk Jawa -->
+            <div class="menu-card">
+                <h3>Kopi Tubruk Jawa</h3>
+                <p>Kopi nusantara diseduh tradisional dengan ampas yang mengendap, pekat dan jujur.</p>
+                <div class="price">Rp15.000</div>
+            </div>
+
+            <!-- Matcha Latte -->
+            <div class="menu-card">
+                <h3>Matcha Latte</h3>
+                <p>Teh hijau premium dengan susu oat yang lembut, hijau segar di setiap teguk.</p>
+                <div class="price">Rp25.000</div>
+            </div>
+
+            <!-- Cokelat Panas Klasik -->
+            <div class="menu-card">
+                <h3>Cokelat Panas Klasik</h3>
+                <p>Cokelat pekat dengan susu hangat dan sedikit taburan marshmallow.</p>
+                <div class="price">Rp20.000</div>
+            </div>
+
+            <!-- Croissant Mentega -->
+            <div class="menu-card">
+                <h3>Croissant Mentega</h3>
+                <p>Renyah di luar dan lembut di dalam, dipanggang setiap pagi untuk teman ngopi.</p>
+                <div class="price">Rp25.000</div>
+            </div>
+
+            <!-- Roti Bakar Cokelat Keju -->
+            <div class="menu-card">
+                <h3>Roti Bakar Cokelat Keju</h3>
+                <p>Roti panggang tebal dengan lelehan cokelat dan keju edam yang gurih manis.</p>
+                <div class="price">Rp17.000</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================
+       GALLERY SECTION
+       ========================= -->
+    <section class="gallery-section" id="galeri">
+        <div class="gallery-grid">
+            <!-- Gambar placeholder - sebenarnya adalah URL image tapi kita gunakan warna solid -->
+            <div class="gallery-item" style="background: linear-gradient(135deg, #25253b 0%, #1a1a2e 100%);">
+                <div style="padding: 20%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); font-size: 14px;">
+                    <strong>Kopi pagi</strong>
+                </div>
+            </div>
+            <div class="gallery-item" style="background: linear-gradient(135deg, #25253b 0%, #1a1a2e 100%);">
+                <div style="padding: 20%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); font-size: 14px;">
+                    <strong>Senja di Jakarta</strong>
+                </div>
+            </div>
+            <div class="gallery-item" style="background: linear-gradient(135deg, #25253b 0%, #1a1a2e 100%);">
+                <div style="padding: 20%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); font-size: 14px;">
+                    <strong>Senja di Jakarta</strong>
+                </div>
+            </div>
+            <div class="gallery-item" style="background: linear-gradient(135deg, #25253b 0%, #1a1a2e 100%);">
+                <div style="padding: 20%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); font-size: 14px;">
+                    <strong>Roti panggang</strong>
+                </div>
+            </div>
+            <div class="gallery-item" style="background: linear-gradient(135deg, #25253b 0%, #1a1a2e 100%);">
+                <div style="padding: 20%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); font-size: 14px;">
+                    <strong>Matcha latte</strong>
+                </div>
+            </div>
+            <div class="gallery-item" style="background: linear-gradient(135deg, #25253b 0%, #1a1a2e 100%);">
+                <div style="padding: 20%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); font-size: 14px;">
+                    <strong>Biji sangrai</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================
+       TESTIMONIAL SECTION
+       ========================= -->
+    <section class="testimonial-section" id="testimoni">
+        <div class="testimonial-container">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-card">
+                <h4>"Tempatnya nyaman untuk kerja dan Kopi Susu Gula Aren-nya jadi favorit saya setiap sore."</h4>
+                <p>Rani, mahasiswa</p>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="testimonial-card">
+                <h4>"Croissant-nya renyah dan wangi mentega. Paket paginya sangat worth it."</h4>
+                <p>Budi, freelancer</p>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="testimonial-card">
+                <h4>"Matcha Latte-nya segar dan tidak terlalu manis. Stafnya juga ramah sekali."</h4>
+                <p>Sinta, karyawan swasta</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================
+       FOOTER SECTION
+       ========================= -->
+    <footer class="footer-section">
+        <div class="footer-container">
+            <!-- Brand -->
+            <div class="footer-brand">
+                <div class="logo">Kopi Senja</div>
+                <p>Kedai kopi lokal untuk teman kerja, ngobrol, dan melepas lelah di akhir hari.</p>
+            </div>
+
+            <!-- Links -->
+            <div class="footer-links">
+                <h4>Link</h4>
+                <ul>
+                    <li><a href="#beranda">Beranda</a></li>
+                    <li><a href="#promo">Promo</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#kontak">Kontak</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="footer-contact">
+                <span>Telepon</span>
+                <div class="phone">+62 812-3456-7890</div>
+                <a href="https://wa.me/6281234567890?text=Halo%20Kopi%20Senja" class="wa-button" target="_blank">
+                    <span>WhatsApp</span>
+                </a>
+            </div>
+
+            <!-- Sosmed/Additional -->
+            <div>
+                <p>© 2026 Kopi Senja. Dibuat dengan secangkir kopi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="footer-bottom">
+        <p>© 2026 Kopi Senja. Dibuat dengan secangkir kopi.</p>
+    </div>
+
+    <!-- =========================
+       JS PENDAHULUAN (Minimal)
+       ========================= -->
+    <script>
+        // Mobile Hamburger Menu
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
+
+        // Scroll Animations (smooth reveal on scroll)
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all section cards
+        document.querySelectorAll('.promo-card, .menu-card, .testimonial-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
